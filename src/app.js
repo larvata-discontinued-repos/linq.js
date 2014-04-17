@@ -3,11 +3,7 @@ var ret;
 
 ret = document.getElementsByTagName("div").linq().where(function(e) {
   return e.tagName.toLowerCase() === "div";
-});
-
-console.log(ret);
-
-ret = document.getElementsByTagName("div").linq().where(function(e, i) {
+}).where(function(e, i) {
   return e.tagName.toLowerCase() === "div" && i < 2;
 });
 
