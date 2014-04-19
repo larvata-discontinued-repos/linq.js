@@ -123,6 +123,107 @@
       return this;
     };
 
+    Enumerable.prototype.ofType = function() {};
+
+    Enumerable.prototype.cast = function() {};
+
+    Enumerable.prototype.first = function(func) {
+      if (func != null) {
+        this.data = this.where(func).data;
+      }
+      return this.data[0];
+    };
+
+    Enumerable.prototype.firstOrDefault = function(func) {
+      if (func != null) {
+        this.data = this.where(func).data;
+      }
+      if (this.data.length === 0) {
+        return null;
+      }
+      return this.data[0];
+    };
+
+    Enumerable.prototype.last = function(func) {
+      if (func != null) {
+        this.data = this.where(func).data;
+      }
+      return this.data.slice(-1)[0];
+    };
+
+    Enumerable.prototype.lastOrDefault = function(func) {
+      if (func != null) {
+        this.data = this.where(func).data;
+      }
+      if (this.data.length === 0) {
+        return null;
+      }
+      return this.data.slice(-1)[0];
+    };
+
+    Enumerable.prototype.single = function(func) {
+      return this.first(func).data;
+    };
+
+    Enumerable.prototype.singleOrDefault = function(func) {
+      return this.firstOrDefault(func).data;
+    };
+
+    Enumerable.prototype.elementAt = function(index) {
+      return this.data[index];
+    };
+
+    Enumerable.prototype.elementAtOrDefault = function(index) {
+      if (this.data[index] != null) {
+        return this.data[index];
+      }
+      return null;
+    };
+
+    Enumerable.prototype.range = function(start, count) {
+      this.data.slice(start, count);
+      return this;
+    };
+
+    Enumerable.prototype.any = function(func) {
+      var current, i, _i, _ref;
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        current = false;
+        if (func != null) {
+          current = !!this.data[i];
+        } else {
+          current = func(data[i]);
+        }
+        if (current) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    Enumerable.prototype.all = function(func) {
+      var current, i, _i, _ref;
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        current = false;
+        if (func != null) {
+          current = !!this.data[i];
+        } else {
+          current = func(data[i]);
+        }
+        if (!current) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    Enumerable.prototype.count = function(func) {
+      if (func != null) {
+        this.data = this.where(func).data;
+      }
+      return this.data.length;
+    };
+
     return Enumerable;
 
   })();

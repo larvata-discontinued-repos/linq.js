@@ -161,8 +161,113 @@ do ()->
         # toLookup: ()->
 
         # void
+        # TSource defaultValue
         defaultIfEmpty: (source)->
             @data=source if @data.length is 0
             return @
+
+        # void
+        ofType: ()->
+
+        # void
+        cast: ()->
+
+        # void
+        # Func<TSource, bool> predicate
+        first: (func)->
+            @data = @where(func).data if func?
+            return @data[0]
+
+        # void
+        # Func<TSource, bool> predicate
+        firstOrDefault: (func)->
+            @data = @where(func).data if func?
+            return null if @data.length is 0
+            return @data[0]
+
+        # void
+        # Func<TSource, bool> predicate
+        last: (func)->
+            @data = @where(func).data if func?
+            return @data.slice(-1)[0]
+
+        # void
+        # Func<TSource, bool> predicate
+        lastOrDefault: (func)->
+            @data = @where(func).data if func?
+            return null if @data.length is 0
+            return @data.slice(-1)[0]
+
+        # TODO
+        # void
+        # Func<TSource, bool> predicate
+        single: (func)->
+            return @first(func).data
+
+        # TODO
+        # void
+        # Func<TSource, bool> predicate
+        singleOrDefault: (func)->
+            return @firstOrDefault(func).data
+
+        # int index
+        elementAt: (index)->
+            return @data[index]
+
+        # int index
+        elementAtOrDefault: (index)->
+            return @data[index] if @data[index]?
+            return null
+
+        # int start,int count
+        range: (start, count)->
+            @data.slice(start,count)
+            return @
+
+        # int count
+        # repeat: (count)->
+
+        # void
+        # empty: ()->
+
+        # void
+        # Func<TSource, bool> predicate
+        any: (func)->
+            for i in [0...@data.length]
+                current= false
+                if func?
+                    current = !!@data[i] 
+                else
+                    current = func(data[i])
+                return true if current
+            return false
+
+        # void
+        # Func<TSource, bool> predicate
+        all: (func)->
+            for i in [0...@data.length]
+                current= false
+                if func?
+                    current = !!@data[i] 
+                else
+                    current = func(data[i])
+                return false if not current
+            return true
+
+        # void
+        # Func<TSource, bool> predicate
+        count: (func)->
+            @data= @where(func).data if func?
+            return @data.length
+
+        # void
+        # Func<TSource, bool> predicate
+        # longCount: (func)->
+
+        
+            
+            
+
+
 
 
