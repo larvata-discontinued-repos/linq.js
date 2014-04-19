@@ -1,15 +1,20 @@
 do ()->
 
-    _ = (obj)->
-        return obj if obj instanceof _
-        return new _(obj) if @ not instanceof _
+    @linq = (obj)->
+        return obj if obj instanceof Enumerable
+        return new Enumerable(obj) if @ not instanceof Enumerable
 
-    Object::linq =(target)->
-        return new Enumerable(target) if target?
-        return new Enumerable(this)
+    # Object::linq =(target)->
+    #     return new Enumerable(target) if target?
+    #     return new Enumerable(this)
+
+    String::same =(target)->
+        return this.toLowerCase() is target.toLowerCase()
 
     class Enumerable
         constructor: (@data) ->
+            if @data instanceof Document
+                @data= document.getElementsByTagName("*")
 
         # Func<TSource, bool> predicate)
         # Func<TSource, int, bool> predicate
@@ -137,7 +142,8 @@ do ()->
         # asEnumerable: ()->
 
         # void
-        # toArray: ()->
+        toArray: ()->
+            return @data
 
         # void
         # toList: ()->
