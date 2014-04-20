@@ -162,11 +162,11 @@
     };
 
     Enumerable.prototype.single = function(func) {
-      return this.first(func).data;
+      return this.first(func);
     };
 
     Enumerable.prototype.singleOrDefault = function(func) {
-      return this.firstOrDefault(func).data;
+      return this.firstOrDefault(func);
     };
 
     Enumerable.prototype.elementAt = function(index) {
@@ -181,7 +181,7 @@
     };
 
     Enumerable.prototype.range = function(start, count) {
-      this.data.slice(start, count);
+      this.data = this.data.slice(start, start + count);
       return this;
     };
 

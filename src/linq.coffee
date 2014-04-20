@@ -202,13 +202,13 @@ do ()->
         # void
         # Func<TSource, bool> predicate
         single: (func)->
-            return @first(func).data
+            return @first(func)
 
         # TODO
         # void
         # Func<TSource, bool> predicate
         singleOrDefault: (func)->
-            return @firstOrDefault(func).data
+            return @firstOrDefault(func)
 
         # int index
         elementAt: (index)->
@@ -221,7 +221,7 @@ do ()->
 
         # int start,int count
         range: (start, count)->
-            @data.slice(start,count)
+            @data = @data.slice(start,start+count)
             return @
 
         # int count
