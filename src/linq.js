@@ -190,9 +190,9 @@
       for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         current = false;
         if (func != null) {
-          current = !!this.data[i];
+          current = func(this.data[i]);
         } else {
-          current = func(data[i]);
+          current = !!this.data[i];
         }
         if (current) {
           return true;
@@ -206,9 +206,9 @@
       for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         current = false;
         if (func != null) {
-          current = !!this.data[i];
+          current = func(this.data[i]);
         } else {
-          current = func(data[i]);
+          current = !!this.data[i];
         }
         if (!current) {
           return false;
@@ -218,7 +218,7 @@
     };
 
     Enumerable.prototype.count = function(func) {
-      if (func == null) {
+      if (func != null) {
         this.data = this.where(func).data;
       }
       return this.data.length;

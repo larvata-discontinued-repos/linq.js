@@ -236,9 +236,9 @@ do ()->
             for i in [0...@data.length]
                 current= false
                 if func?
-                    current = !!@data[i] 
+                    current = func(@data[i])
                 else
-                    current = func(data[i])
+                    current = !!@data[i] 
                 return true if current
             return false
 
@@ -248,16 +248,16 @@ do ()->
             for i in [0...@data.length]
                 current= false
                 if func?
-                    current = !!@data[i] 
+                    current = func(@data[i])
                 else
-                    current = func(data[i])
+                    current = !!@data[i] 
                 return false if not current
             return true
 
         # void
         # Func<TSource, bool> predicate
         count: (func)->
-            @data= @where(func).data if not func?
+            @data= @where(func).data if func?
             return @data.length
 
         # void
