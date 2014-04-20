@@ -257,16 +257,54 @@ do ()->
         # void
         # Func<TSource, bool> predicate
         count: (func)->
-            @data= @where(func).data if func?
+            @data= @where(func).data if not func?
             return @data.length
 
         # void
         # Func<TSource, bool> predicate
         # longCount: (func)->
 
-        
-            
-            
+        # TSource value
+        # IEqualityComparer<TSource> comparer
+        # contains: ()->
+
+        # Func<TSource, TSource, TSource> func
+        # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func
+        # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector
+        # aggregate: ()->
+
+
+        # void
+        # Func<TSource, int> selector
+        sum: (func)->
+            ret = 0
+            for i in [0...@data.length]
+                ret += @data[i] if not func?
+                ret += func(@data[i]) if func?
+            return ret
+
+        # void
+        # Func<TSource, int> selector
+        min: (func)->
+            minId=0
+            for i in [1..@data.length]
+                minId = i if not func? and @data[i]<@data[minId]
+                minId = i if func? and func(@data[i])<func(@data[minId]) 
+            return @data[minId]
+
+        # void
+        # Func<TSource, int> selector
+        max: (func)->
+            maxId=0
+            for i in [1..@data.length]
+                maxId = i if not func? and @data[i]>@data[maxId]
+                maxId = i if func? and func(@data[i])>func(@data[maxId])
+            return @data[maxId]
+
+        # void
+        # Func<TSource, int> selector
+        average: (func)->
+            return @sum(func) / @data.length
 
 
 

@@ -218,10 +218,56 @@
     };
 
     Enumerable.prototype.count = function(func) {
-      if (func != null) {
+      if (func == null) {
         this.data = this.where(func).data;
       }
       return this.data.length;
+    };
+
+    Enumerable.prototype.sum = function(func) {
+      var i, ret, _i, _ref;
+      ret = 0;
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        if (func == null) {
+          ret += this.data[i];
+        }
+        if (func != null) {
+          ret += func(this.data[i]);
+        }
+      }
+      return ret;
+    };
+
+    Enumerable.prototype.min = function(func) {
+      var i, minId, _i, _ref;
+      minId = 0;
+      for (i = _i = 1, _ref = this.data.length; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
+        if ((func == null) && this.data[i] < this.data[minId]) {
+          minId = i;
+        }
+        if ((func != null) && func(this.data[i]) < func(this.data[minId])) {
+          minId = i;
+        }
+      }
+      return this.data[minId];
+    };
+
+    Enumerable.prototype.max = function(func) {
+      var i, maxId, _i, _ref;
+      maxId = 0;
+      for (i = _i = 1, _ref = this.data.length; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
+        if ((func == null) && this.data[i] > this.data[maxId]) {
+          maxId = i;
+        }
+        if ((func != null) && func(this.data[i]) > func(this.data[maxId])) {
+          maxId = i;
+        }
+      }
+      return this.data[maxId];
+    };
+
+    Enumerable.prototype.average = function(func) {
+      return this.sum(func) / this.data.length;
     };
 
     return Enumerable;
