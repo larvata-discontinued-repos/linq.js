@@ -82,13 +82,9 @@
 
     Enumerable.prototype.groupJoin = function() {};
 
-    Enumerable.prototype.orderBy = function() {};
+    Enumerable.prototype.orderBy = function(func) {};
 
     Enumerable.prototype.orderByDescending = function() {};
-
-    Enumerable.prototype.thenBy = function() {};
-
-    Enumerable.prototype.thenByDescending = function() {};
 
     Enumerable.prototype.groupBy = function() {};
 
@@ -108,7 +104,15 @@
 
     Enumerable.prototype.except = function() {};
 
-    Enumerable.prototype.reverse = function() {};
+    Enumerable.prototype.reverse = function() {
+      var i, ret, _i, _ref;
+      ret = [];
+      for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        ret.push(this.data.splice(-1));
+      }
+      this.data = ret;
+      return this;
+    };
 
     Enumerable.prototype.sequenceEqual = function() {};
 
@@ -122,8 +126,6 @@
       }
       return this;
     };
-
-    Enumerable.prototype.ofType = function() {};
 
     Enumerable.prototype.cast = function() {};
 

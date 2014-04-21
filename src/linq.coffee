@@ -80,7 +80,8 @@ do ()->
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
-        orderBy: ()->
+        orderBy: (func)->
+
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
@@ -88,11 +89,11 @@ do ()->
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
-        thenBy: ()->
+        # thenBy: ()->
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
-        thenByDescending: ()->
+        # thenByDescending: ()->
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer
@@ -132,6 +133,11 @@ do ()->
 
         # void
         reverse: ()->
+            ret=[]
+            for i in [0...@data.length]
+                ret.push(@data.splice(-1))
+            @data=ret
+            return @
 
         # IEnumerable<TSource> second
         # IEnumerable<TSource> second, IEqualityComparer<TSource> comparer
@@ -167,7 +173,7 @@ do ()->
             return @
 
         # void
-        ofType: ()->
+        # ofType: ()->
 
         # void
         cast: ()->
