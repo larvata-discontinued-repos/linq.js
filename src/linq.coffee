@@ -94,10 +94,12 @@ do ()->
             )
             return @
 
+        # WON'T IMPLEMENT
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
         # thenBy: ()->
 
+        # WON'T IMPLEMENT
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
         # thenByDescending: ()->
@@ -125,7 +127,6 @@ do ()->
             #     return
                 # ...
 
-
         # IEnumerable<TSource> second
         # IEnumerable<TSource> second, IEqualityComparer<TSource> comparer
         union: (func)->
@@ -150,7 +151,7 @@ do ()->
         # IEnumerable<TSource> second, IEqualityComparer<TSource> comparer
         sequenceEqual: ()->
 
-
+        # WON'T IMPLEMENT
         # void
         # asEnumerable: ()->
 
@@ -158,15 +159,18 @@ do ()->
         toArray: ()->
             return @data
 
+        # WON'T IMPLEMENT
         # void
         # toList: ()->
 
+        # WON'T IMPLEMENT
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer
         # Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector
         # Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, IEqualityComparer<TKey> comparer
         # toDictionary: ()->
 
+        # WON'T IMPLEMENT
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer
         # Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector
@@ -179,9 +183,11 @@ do ()->
             @data=source if @data.length is 0
             return @
 
+        # WON'T IMPLEMENT
         # void
         # ofType: ()->
 
+        # WON'T IMPLEMENT
         # void
         cast: ()->
 
@@ -238,6 +244,7 @@ do ()->
         # int count
         # repeat: (count)->
 
+        # WON'T IMPLEMENT
         # void
         # empty: ()->
 
@@ -271,6 +278,7 @@ do ()->
             @data= @where(func).data if func?
             return @data.length
 
+        # WON'T IMPLEMENT
         # void
         # Func<TSource, bool> predicate
         # longCount: (func)->
@@ -283,7 +291,6 @@ do ()->
                 if not func?
                     d is value
             )
-
 
         # Func<TSource, TSource, TSource> func
         # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func
