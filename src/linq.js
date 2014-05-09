@@ -189,8 +189,8 @@
 
     Enumerable.prototype.any = function(func) {
       var current, i, _i, _ref;
+      current = false;
       for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        current = false;
         if (func != null) {
           current = func(this.data[i]);
         } else {
@@ -205,8 +205,8 @@
 
     Enumerable.prototype.all = function(func) {
       var current, i, _i, _ref;
+      current = false;
       for (i = _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        current = false;
         if (func != null) {
           current = func(this.data[i]);
         } else {

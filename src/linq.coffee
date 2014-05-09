@@ -239,24 +239,24 @@ do ()->
         # void
         # Func<TSource, bool> predicate
         any: (func)->
+            current= false
             for i in [0...@data.length]
-                current= false
                 if func?
                     current = func(@data[i])
                 else
-                    current = !!@data[i] 
+                    current = !!@data[i]
                 return true if current
             return false
 
         # void
         # Func<TSource, bool> predicate
         all: (func)->
+            current= false
             for i in [0...@data.length]
-                current= false
                 if func?
                     current = func(@data[i])
                 else
-                    current = !!@data[i] 
+                    current = !!@data[i]
                 return false if not current
             return true
 
@@ -295,7 +295,7 @@ do ()->
             minId=0
             for i in [1..@data.length]
                 minId = i if not func? and @data[i]<@data[minId]
-                minId = i if func? and func(@data[i])<func(@data[minId]) 
+                minId = i if func? and func(@data[i])<func(@data[minId])
             return @data[minId]
 
         # void

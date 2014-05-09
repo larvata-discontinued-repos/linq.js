@@ -14,3 +14,5 @@ ret = linq([1, 4, 65, 2, 33, 5]).last(function(a) {
 });
 
 console.log(ret);
+
+//# sourceMappingURL=app.map
