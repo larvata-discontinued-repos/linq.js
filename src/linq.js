@@ -106,7 +106,7 @@
       return this;
     };
 
-    Enumerable.prototype.distince = function(func) {};
+    Enumerable.prototype.distinct = function(func) {};
 
     Enumerable.prototype.union = function(func) {};
 
@@ -234,6 +234,23 @@
         this.data = this.where(func).data;
       }
       return this.data.length;
+    };
+
+    Enumerable.prototype.aggregate = function(op1, op2) {
+      var func, i, pointer, ret, _i, _ref;
+      if (op2 != null) {
+        ret = op1;
+        pointer = 0;
+        func = op2;
+      } else {
+        ret = this.data[0];
+        pointer = 1;
+        func = op1;
+      }
+      for (i = _i = pointer, _ref = this.data.length; pointer <= _ref ? _i < _ref : _i > _ref; i = pointer <= _ref ? ++_i : --_i) {
+        ret = func(ret, this.data[i]);
+      }
+      return ret;
     };
 
     Enumerable.prototype.sum = function(func) {

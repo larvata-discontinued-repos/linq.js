@@ -120,7 +120,7 @@ do ()->
 
         # void
         # IEqualityComparer<TSource> comparer
-        distince: (func)->
+        distinct: (func)->
             # if func?
             #     return
                 # ...
@@ -284,8 +284,20 @@ do ()->
         # Func<TSource, TSource, TSource> func
         # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func
         # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector
-        # aggregate: ()->
+        aggregate: (op1,op2)->
+            if op2?
+                ret = op1
+                pointer = 0
+                func = op2
+            else
+                ret = @data[0]
+                pointer = 1
+                func = op1
 
+            for i in [pointer...@data.length]
+                 ret = func(ret,@data[i])
+
+            return ret
 
         # void
         # Func<TSource, int> selector
