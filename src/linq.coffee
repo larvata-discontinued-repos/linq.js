@@ -81,11 +81,18 @@ do ()->
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
         orderBy: (func)->
-
+            @data.sort((a,b)->
+                func(a)-func(b)
+            )
+            return @
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer
-        orderByDescending: ()->
+        orderByDescending: (func)->
+            @data.sort((a,b)->
+                func(b)-func(a)
+            )
+            return @
 
         # Func<TSource, TKey> keySelector
         # Func<TSource, TKey> keySelector, IComparer<TKey> comparer

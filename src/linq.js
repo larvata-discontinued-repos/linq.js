@@ -82,9 +82,19 @@
 
     Enumerable.prototype.groupJoin = function() {};
 
-    Enumerable.prototype.orderBy = function(func) {};
+    Enumerable.prototype.orderBy = function(func) {
+      this.data.sort(function(a, b) {
+        return func(a) - func(b);
+      });
+      return this;
+    };
 
-    Enumerable.prototype.orderByDescending = function() {};
+    Enumerable.prototype.orderByDescending = function(func) {
+      this.data.sort(function(a, b) {
+        return func(b) - func(a);
+      });
+      return this;
+    };
 
     Enumerable.prototype.groupBy = function() {};
 
