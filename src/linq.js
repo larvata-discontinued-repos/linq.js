@@ -236,6 +236,14 @@
       return this.data.length;
     };
 
+    Enumerable.prototype.contains = function(value, func) {
+      return this.any(function(d) {
+        if (func == null) {
+          return d === value;
+        }
+      });
+    };
+
     Enumerable.prototype.aggregate = function(op1, op2) {
       var func, i, pointer, ret, _i, _ref;
       if (op2 != null) {

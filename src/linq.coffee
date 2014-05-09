@@ -211,13 +211,11 @@ do ()->
             return null if @data.length is 0
             return @data.slice(-1)[0]
 
-        # TODO
         # void
         # Func<TSource, bool> predicate
         single: (func)->
             return @first(func)
 
-        # TODO
         # void
         # Func<TSource, bool> predicate
         singleOrDefault: (func)->
@@ -278,8 +276,14 @@ do ()->
         # longCount: (func)->
 
         # TSource value
-        # IEqualityComparer<TSource> comparer
-        # contains: ()->
+        # TSource value, IEqualityComparer<TSource> comparer
+        contains: (value,func)->
+            # todo implement comparer
+            @any((d)->
+                if not func?
+                    d is value
+            )
+
 
         # Func<TSource, TSource, TSource> func
         # TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func
