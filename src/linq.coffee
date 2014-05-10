@@ -116,7 +116,7 @@ do ()->
 
         # IEnumerable<TSource> second
         concat: (second)->
-            for i in [0...second.lenght]
+            for i in [0...second.length]
                 @data.push(second[i])
             return @
 
@@ -133,11 +133,22 @@ do ()->
 
         # IEnumerable<TSource> second
         # IEnumerable<TSource> second, IEqualityComparer<TSource> comparer
-        intersect: (func)->
+        # todo implement comparer
+        intersect: (second, comparer)->
+            ret=[]
+            for i in [0...second.length]
+                ret.push(second[i]) if @contains(second[i])
+            return ret
+                
 
         # IEnumerable<TSource> second
         # IEnumerable<TSource> second, IEqualityComparer<TSource> comparer
-        except: ()->
+        # todo implement comparer
+        except: (second, comparer)->
+            ret=[]
+            for i in [0...second.length]
+                ret.push(second[i]) if not @contains(second[i])
+            return ret
 
         # void
         reverse: ()->
@@ -285,7 +296,7 @@ do ()->
 
         # TSource value
         # TSource value, IEqualityComparer<TSource> comparer
-        contains: (value,func)->
+        contains: (value,comparer)->
             # todo implement comparer
             @any((d)->
                 if not func?

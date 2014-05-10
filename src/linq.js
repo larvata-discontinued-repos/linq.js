@@ -100,7 +100,7 @@
 
     Enumerable.prototype.concat = function(second) {
       var i, _i, _ref;
-      for (i = _i = 0, _ref = second.lenght; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = second.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         this.data.push(second[i]);
       }
       return this;
@@ -110,9 +110,27 @@
 
     Enumerable.prototype.union = function(func) {};
 
-    Enumerable.prototype.intersect = function(func) {};
+    Enumerable.prototype.intersect = function(second, comparer) {
+      var i, ret, _i, _ref;
+      ret = [];
+      for (i = _i = 0, _ref = second.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        if (this.contains(second[i])) {
+          ret.push(second[i]);
+        }
+      }
+      return ret;
+    };
 
-    Enumerable.prototype.except = function() {};
+    Enumerable.prototype.except = function(second, comparer) {
+      var i, ret, _i, _ref;
+      ret = [];
+      for (i = _i = 0, _ref = second.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        if (!this.contains(second[i])) {
+          ret.push(second[i]);
+        }
+      }
+      return ret;
+    };
 
     Enumerable.prototype.reverse = function() {
       var i, ret, _i, _ref;
@@ -236,9 +254,9 @@
       return this.data.length;
     };
 
-    Enumerable.prototype.contains = function(value, func) {
+    Enumerable.prototype.contains = function(value, comparer) {
       return this.any(function(d) {
-        if (func == null) {
+        if (typeof func === "undefined" || func === null) {
           return d === value;
         }
       });
