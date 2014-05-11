@@ -155,8 +155,6 @@
       return this;
     };
 
-    Enumerable.prototype.cast = function() {};
-
     Enumerable.prototype.first = function(func) {
       if (func != null) {
         this.data = this.where(func).data;

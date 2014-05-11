@@ -200,7 +200,7 @@ do ()->
 
         # WON'T IMPLEMENT
         # void
-        cast: ()->
+        # cast: ()->
 
         # void
         # Func<TSource, bool> predicate
